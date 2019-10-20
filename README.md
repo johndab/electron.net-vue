@@ -31,3 +31,14 @@ rm -r front-end
 vue create -n front-end
 ```
 
+But remember to set
+```
+  configureWebpack: {
+    target: 'electron-renderer',
+  }
+```
+in `vue.config.js` so you can use features like
+```
+const { ipcRenderer } = require("electron");
+```
+inside your vue app
