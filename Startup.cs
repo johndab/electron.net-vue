@@ -42,10 +42,6 @@ namespace electron.net_vue
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -54,11 +50,8 @@ namespace electron.net_vue
 
             app.UseSpa(spa =>
             {
-                // spa.Options.SourcePath = "front-end";
-                // if (env.IsDevelopment()) // DOESN'T WORK WITH ELECTRONIZE START
-                // {
-                spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
-                // }
+                // COMMENT FOR PRODUCTION
+                spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");   
             });
 
             Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());

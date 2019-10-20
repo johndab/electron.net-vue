@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using electron.net_vue.Models;
 
 namespace electron.net_vue.Controllers
 {
