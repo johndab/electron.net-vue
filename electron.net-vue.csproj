@@ -4,6 +4,13 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>electron.net_vue</RootNamespace>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Typescript/Javascript Client Configuration -->
+    <SpaRoot>front-end\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="5.22.14" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -16,4 +23,27 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build">
+    <!-- Build Target:  Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+  </Target>
+
+  <Target Name="DebugEnsureNpm" AfterTargets="DebugEnsureNodeEnv">
+    <!-- Build Target:  Ensure Node.js is installed -->
+    <Exec Command="npm --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+  </Target>
+
+  <Target Name="EnsureNodeModulesInstalled" BeforeTargets="Build" Inputs="package.json" Outputs="packages-lock.json">
+    <!-- Build Target: Restore NPM packages using npm -->
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
 </Project>

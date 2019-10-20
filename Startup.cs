@@ -30,7 +30,7 @@ namespace electron.net_vue
 
             services.AddSpaStaticFiles(configuration =>
            {
-               configuration.RootPath = "wwwroot/dist";
+               configuration.RootPath = "front-end/dist";
            });
         }
 
@@ -54,10 +54,10 @@ namespace electron.net_vue
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "wwwroot";
-                // if (env.IsDevelopment())
+                // spa.Options.SourcePath = "front-end";
+                // if (env.IsDevelopment()) // DOESN'T WORK WITH ELECTRONIZE START
                 // {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
+                spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
                 // }
             });
 

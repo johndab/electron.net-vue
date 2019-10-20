@@ -1,19 +1,29 @@
 
-# Development
+# Running demo:
+### Development
 
-Create your front-end application:
-```bash
-cd wwwroot
-
-# Scaffold vue app
-vue create -n .
-
-# Install dependencies
-npm install
+In the first terminal:
+```
+cd front-end
+npm run serve
 ```
 
+In the second terminal:
 ```
-electronize init
-
 electronize start
 ```
+
+### Production
+
+??
+
+# Working with this repo
+
+Feel free to create a new vue app with your setup
+```bash
+rm -r front-end
+
+# Scaffold vue app in www
+vue create -n front-end
+```
+
